@@ -23,4 +23,10 @@ public class Assertions {
     public void theNameFieldShouldBeEqualsToAngy(String fieldName,String expectedValue){
         assertEquals(expectedValue, stepsDefinitions.getResponse().path(fieldName));
     }
+
+    @Then("^The (.*) field not should be equals to (.*)$")
+    public void theNameFieldShouldNotBeEqualsToEpic(String fieldName,String expectedValue){
+        assertEquals(expectedValue, stepsDefinitions.getResponse().path(fieldName));
+    }
+
 }
