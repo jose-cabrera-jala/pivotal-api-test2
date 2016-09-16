@@ -1,7 +1,11 @@
 package org.fundacionjala.pivotalapi.hooks;
 
 import cucumber.api.java.After;
+import io.restassured.response.Response;
 import org.fundacionjala.pivotalapi.api.RequestManager;
+
+
+import java.util.HashMap;
 
 import static org.fundacionjala.pivotalapi.api.Mapper.RESPONSE_VALUES;
 
@@ -15,7 +19,11 @@ public class ProjectHook {
 
     @After("@deleteProject")
     public void deleteProject() {
-        String id = RESPONSE_VALUES.get("Project1").jsonPath().get("id").toString();
-        RequestManager.delete(PROJECTS_ENDPOINT + id);
+        getProjects().forEach((key,value) -> RequestManager.delete(PROJECTS_ENDPOINT + value.jsonPath().get("id").toString()));
+    }
+
+    public HashMap<String, Response> getProjects(){
+       final String projectKey = "Project";
+       return (HashMap<String, Response>) RESPONSE_VALUES.entrySet().stream().filter(value -> value.getKey().contains(projectKey));
     }
 }
