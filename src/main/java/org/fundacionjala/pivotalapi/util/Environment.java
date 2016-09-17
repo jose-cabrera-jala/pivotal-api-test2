@@ -17,6 +17,7 @@ public class Environment {
     private static Environment instance;
     private static final Properties prop = new Properties();
     private static final String FILENAME = "pivotal.properties";
+
     private Environment() {
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME);
@@ -43,14 +44,6 @@ public class Environment {
 
     public String getProxy() {
         return prop.getProperty("proxy");
-    }
-
-    public String getUser() {
-        return prop.getProperty("user");
-    }
-
-    public String getPassword() {
-        return prop.getProperty("password");
     }
 
     public String getToken() {
