@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotalapi.api;
 
-import com.github.markusbernhardt.proxy.ProxySearch;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -14,7 +13,8 @@ public class Connection {
     private static Connection instance;
     private RequestSpecification requestSpecification;
 
-    private Connection(){
+    private Connection() {
+
         Environment apiRetClient = Environment.getInstance();
         RestAssured.baseURI = apiRetClient.getBaseURI();
         requestSpecification = new RequestSpecBuilder()
@@ -26,14 +26,16 @@ public class Connection {
         }
     }
 
-    public static Connection getInstance(){
-        if(instance == null){
+    public static Connection getInstance() {
+
+        if (instance == null) {
             instance = new Connection();
         }
         return instance;
     }
 
-    public  RequestSpecification getRequestSpecification(){
+    public RequestSpecification getRequestSpecification() {
+
         return requestSpecification;
     }
 }
