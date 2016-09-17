@@ -17,20 +17,15 @@ public class Connection {
     private Connection(){
         Environment apiRetClient = Environment.getInstance();
         RestAssured.baseURI = apiRetClient.getBaseURI();
-        if (ProxySearch.getDefaultProxySearch().getProxySelector() == null) {
-            requestSpecification = new RequestSpecBuilder()
-                    .setRelaxedHTTPSValidation()
-                    .addHeader(TOKEN_HEADER, apiRetClient.getInstance().getToken())
-                    .build();
-        } else {
-            requestSpecification = new RequestSpecBuilder()
-                    .setRelaxedHTTPSValidation()
-                    .setProxy(apiRetClient.getInstance().getProxy())
-                    .addHeader(TOKEN_HEADER, apiRetClient.getInstance().getToken())
-                    .build();
+        requestSpecification = new RequestSpecBuilder()
+                .setRelaxedHTTPSValidation()
+                .addHeader(TOKEN_HEADER, apiRetClient.getToken())
+                .build();
+        if (!apiRetClient.getProxy().isEmpty()) {
+            requestSpecification.proxy(apiRetClient.getProxy());
         }
-
     }
+
     public static Connection getInstance(){
         if(instance == null){
             instance = new Connection();

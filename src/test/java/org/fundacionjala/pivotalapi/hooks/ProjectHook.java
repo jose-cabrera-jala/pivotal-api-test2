@@ -1,11 +1,10 @@
 package org.fundacionjala.pivotalapi.hooks;
 
 import cucumber.api.java.After;
-import io.restassured.response.Response;
 import org.fundacionjala.pivotalapi.api.RequestManager;
 
-
-import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.fundacionjala.pivotalapi.api.Mapper.RESPONSE_VALUES;
 
@@ -16,14 +15,14 @@ import static org.fundacionjala.pivotalapi.api.Mapper.RESPONSE_VALUES;
 public class ProjectHook {
 
     private static final String PROJECTS_ENDPOINT = "/projects/";
+    private static final String PROJECT_KEY = "Project";
 
     @After("@deleteProject")
     public void deleteProject() {
-        getProjects().forEach((key,value) -> RequestManager.delete(PROJECTS_ENDPOINT + value.jsonPath().get("id").toString()));
+        getProjects().forEach((e) -> RequestManager.delete(PROJECTS_ENDPOINT + RESPONSE_VALUES.get(e).jsonPath().get("id").toString()));
     }
 
-    public HashMap<String, Response> getProjects(){
-       final String projectKey = "Project";
-       return (HashMap<String, Response>) RESPONSE_VALUES.entrySet().stream().filter(value -> value.getKey().contains(projectKey));
+    public List<String> getProjects() {
+        return RESPONSE_VALUES.keySet().stream().filter(value -> value.contains(PROJECT_KEY)).collect(Collectors.toList());
     }
 }
