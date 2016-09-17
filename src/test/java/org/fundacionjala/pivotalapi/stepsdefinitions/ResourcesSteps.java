@@ -9,6 +9,7 @@ import org.fundacionjala.pivotalapi.api.RequestManager;
 import java.util.Map;
 
 import static org.fundacionjala.pivotalapi.api.Mapper.addResponse;
+import static org.fundacionjala.pivotalapi.api.Mapper.mapBodyJson;
 import static org.fundacionjala.pivotalapi.api.Mapper.mapEndpoint;
 
 public class ResourcesSteps {
@@ -27,7 +28,7 @@ public class ResourcesSteps {
 
     @When("^I send a (.*) PUT with the json$")
     public void i_send_a_PUT_request_to_ProjectRequest_with_json(String endPoint, String body) {
-        response = RequestManager.put(mapEndpoint(endPoint), body);
+        response = RequestManager.put(mapEndpoint(endPoint), mapBodyJson(body));
     }
 
     @And("^I store as a (.*)$")

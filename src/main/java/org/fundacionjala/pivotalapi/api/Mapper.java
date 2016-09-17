@@ -29,7 +29,11 @@ public final class Mapper {
     }
 
     public static String mapEndpoint(String endPoint) {
-        Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(endPoint);
+       return mapBodyJson(endPoint).replaceAll(REGEX_BRACKETS, "");
+    }
+
+    public static String mapBodyJson (String body){
+        Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(body);
         StringBuffer newEndPoint = new StringBuffer();
 
         while (matches.find()) {
@@ -40,9 +44,8 @@ public final class Mapper {
             matches.appendReplacement(newEndPoint, replaceParameter);
         }
         matches.appendTail(newEndPoint);
-        return newEndPoint.toString().replaceAll(REGEX_BRACKETS, "");
+        return newEndPoint.toString();
     }
-
     public static void addResponse(String key, Response response) {
         RESPONSE_VALUES.put(key, response);
     }

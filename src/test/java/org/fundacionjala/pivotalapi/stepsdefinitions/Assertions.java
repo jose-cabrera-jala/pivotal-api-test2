@@ -2,6 +2,7 @@ package org.fundacionjala.pivotalapi.stepsdefinitions;
 
 import cucumber.api.java.en.Then;
 
+import static org.fundacionjala.pivotalapi.api.Mapper.mapBodyJson;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -21,7 +22,7 @@ public class Assertions {
 
     @Then("^The (.*) field should be equals to (.*)$")
     public void theNameFieldShouldBeEqualsToAngy(String fieldName,String expectedValue){
-        assertEquals(expectedValue, stepsDefinitions.getResponse().path(fieldName));
+        assertEquals(mapBodyJson(expectedValue), stepsDefinitions.getResponse().path(fieldName).toString());
     }
 
     @Then("^The (.*) field not should be equals to (.*)$")
