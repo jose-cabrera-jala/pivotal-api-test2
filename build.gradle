@@ -49,7 +49,7 @@ task executeFeatures() {
                         '--plugin', 'html:build/cucumber-html-report',
                         '--plugin', 'json:build/cucumber.json',
                         '--plugin', 'rerun:build/rerun.txt',
-                        '--glue', 'org.fundacionjala.pivotal', 'src/test/resources/features']
+                        '--glue', 'org.fundacionjala.pivotalapi', 'src/test/resources/features']
                 jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
                 jvmArgs = ["-DurlApi=" + urlApi]
                 jvmArgs = ["-DapiToken=" + apiToken]
