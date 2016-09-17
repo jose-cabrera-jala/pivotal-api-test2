@@ -1,5 +1,9 @@
 package org.fundacionjala.pivotalapi.util;
 
+import org.apache.log4j.Logger;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -8,15 +12,20 @@ import java.util.Properties;
  * Created by AngelaValdez on 8/31/2016.
  */
 public class Environment {
+    private static final Logger LOGGER = Logger.getLogger(Environment.class.getSimpleName());
+
     private static Environment instance;
     private static final Properties prop = new Properties();
-    private static final String FILENAME = "config.properties";
+    private static final String FILENAME = "pivotal.properties";
     private Environment() {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILENAME);
         try {
-            prop.load(inputStream);
+            FileInputStream fileInputStream = new FileInputStream(FILENAME);
+            prop.load(fileInputStream);
+            fileInputStream.close();
+        } catch (FileNotFoundException e) {
+            LOGGER.warn("The properties file couldn't be found", e.getCause());
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.warn("A problem of type", e.getCause());
         }
 
     }
