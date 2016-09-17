@@ -2,7 +2,7 @@ Feature: Projects Pivotal Tracker Testing
 
   Background: create a Project
     When  I send a /projects POST request
-      | name   | Project0006 |
+      | name   | Project0007 |
     Then I store as a Project1
 
   Scenario: Delete project
@@ -12,9 +12,9 @@ Feature: Projects Pivotal Tracker Testing
   @deleteProject
   Scenario: Edit Project
     When  I send a /projects/[Project1.id] PUT request
-      | name | Project updated2 |
+      | name | Project update |
     Then I expect Status code 200
-    And The name field should be equals to Project updated2
+    And The name field should be equals to Project update
 
   @deleteProject
   Scenario: Verify to get all projects
