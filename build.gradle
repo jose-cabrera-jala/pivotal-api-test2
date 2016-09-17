@@ -51,8 +51,8 @@ task executeFeatures() {
                         '--plugin', 'rerun:build/rerun.txt',
                         '--glue', 'org.fundacionjala.pivotalapi', 'src/test/resources/features']
                 jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
-                jvmArgs = ["-DurlApi=" + urlApi]
-                jvmArgs = ["-DapiToken=" + apiToken]
+                jvmArgs = ["-DurlApi=" + baseURI]
+                jvmArgs = ["-DapiToken=" + token]
             }
         } catch (Exception e) {
             //In order to avoid FAILURE: Build failed with an exception.
@@ -63,7 +63,7 @@ task executeFeatures() {
 }
 
 test {
-    exclude 'org/fundacionjala/pivotal/cucumber/**'
+    exclude 'org/fundacionjala/pivotalapi/**'
 }
 
 def generateReport(String pathCucumber, String pathReport) {
