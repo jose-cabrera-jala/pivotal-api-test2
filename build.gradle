@@ -1,13 +1,15 @@
 import net.masterthought.cucumber.Configuration
 import net.masterthought.cucumber.ReportBuilder
 
+group 'org.fundacionjala.pivotalapi'
+version '1.0-SNAPSHOT'
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
 
-// In this section you declare where to find the dependencies of your project
 repositories {
     jcenter()
 }
@@ -25,7 +27,6 @@ buildscript {
     }
 }
 
-// In this section you declare the dependencies for your production and test code
 dependencies {
     compile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.1'
     compile group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.1'
@@ -50,27 +51,25 @@ task executeFeatures() {
                         '--plugin', 'json:build/cucumber.json',
                         '--plugin', 'rerun:build/rerun.txt',
                         '--glue', 'org.fundacionjala.pivotalapi', 'src/test/resources/features']
-                jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
-                jvmArgs = ["-DurlApi=" + baseURI]
-                jvmArgs = ["-DapiToken=" + token]
+                jvmArgs = ["-DurlApi=" + urlApi]
             }
         } catch (Exception e) {
-            //In order to avoid FAILURE: Build failed with an exception.
+
         }
-        sleep(5000) // sleep due to cucumber.json is not created too fast
+        sleep(5000)
         generateReport("build/cucumber.json", "cucumber-html-report")
     }
 }
 
 test {
-    exclude 'org/fundacionjala/pivotalapi/**'
+    exclude 'org/fundacionjala/pivotal/cucumber/**'
 }
 
 def generateReport(String pathCucumber, String pathReport) {
     File reportOutputDirectory = new File(pathReport)
     List<String> jsonReportFiles = new ArrayList<>()
     jsonReportFiles.add(pathCucumber)
-    String buildProjectName = "pivotal-api-test"
+    String buildProjectName = "pivotalapitest"
     Configuration configuration = new Configuration(reportOutputDirectory, buildProjectName)
     ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, configuration)
     reportBuilder.generateReports()
