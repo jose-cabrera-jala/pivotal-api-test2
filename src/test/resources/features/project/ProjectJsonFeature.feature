@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Projects Pivotal Tracker Testing With Json
   Scenario: Verify to create, edit an delete an specific Project API by Id using json
       When I send a /projects POST with the json

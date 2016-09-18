@@ -4,18 +4,20 @@ import cucumber.api.java.After;
 import org.fundacionjala.pivotalapi.api.RequestManager;
 
 import static org.fundacionjala.pivotalapi.api.Mapper.RESPONSE_VALUES;
+import static org.fundacionjala.pivotalapi.util.Constants.ID_ATTRIBUTE;
+import static org.fundacionjala.pivotalapi.util.Constants.PROJECTS_ENDPOINT;
+import static org.fundacionjala.pivotalapi.util.Constants.EPICS_ENDPOINT;
+
 /**
  * Created by ErickaViraca on 9/16/2016.
  */
 public class EpicHook {
 
-    private static final String PROJECTS_ENDPOINT = "/projects/";
-    private static final String EPICS_ENDPOINT = "/epics/";
 
     @After("@deleteEpic")
     public void deleteEpic() {
-        String idEpic = RESPONSE_VALUES.get("Epic1").jsonPath().get("id").toString();
-        String idProject = RESPONSE_VALUES.get("Project1").jsonPath().get("id").toString();
+        String idEpic = RESPONSE_VALUES.get("Epic1").jsonPath().get(ID_ATTRIBUTE).toString();
+        String idProject = RESPONSE_VALUES.get("Project1").jsonPath().get(ID_ATTRIBUTE).toString();
         RequestManager.delete(PROJECTS_ENDPOINT + idProject + EPICS_ENDPOINT + idEpic);
     }
 

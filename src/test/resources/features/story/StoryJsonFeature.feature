@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Stories Pivotal Tracker Testing With Json
   Scenario: Verify to create, edit and delete an specific Story API by Id using json
     When I send a /projects POST with the json
