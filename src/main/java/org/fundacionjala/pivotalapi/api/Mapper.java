@@ -24,19 +24,16 @@ public final class Mapper {
     private Mapper() {
     }
 
-    public static String getField(Response response, String parameter) {
+    public static String getField(final Response response, final String parameter) {
         return from(response.asString()).get(parameter).toString();
     }
 
-    public static String mapEndpoint(String endPoint) {
-       return mapBodyJson(endPoint).replaceAll(REGEX_BRACKETS, "");
-    }
-
-    public static String mapBodyJson (String body){
-        Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(body);
+    public static String mapEndpoint(final String endPoint) {
+        Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(endPoint);
         StringBuffer newEndPoint = new StringBuffer();
 
         while (matches.find()) {
+
             String[] parametersParts = matches.group().split(REGEX_DOT, 2);
             String key = parametersParts[0];
             String value = parametersParts[1];
@@ -44,9 +41,10 @@ public final class Mapper {
             matches.appendReplacement(newEndPoint, replaceParameter);
         }
         matches.appendTail(newEndPoint);
-        return newEndPoint.toString();
+        return newEndPoint.toString().replaceAll(REGEX_BRACKETS, "");
     }
-    public static void addResponse(String key, Response response) {
+
+    public static void addResponse(final String key, final Response response) {
         RESPONSE_VALUES.put(key, response);
     }
 }
