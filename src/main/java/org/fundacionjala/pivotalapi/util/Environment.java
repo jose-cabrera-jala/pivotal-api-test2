@@ -15,15 +15,15 @@ public final class Environment {
     private static final Logger LOGGER = Logger.getLogger(Environment.class.getSimpleName());
 
     private static Environment instance;
-    private static final Properties properties = new Properties();
-    private static final String FILENAME = "pivotal.properties";
+    private static final Properties PROPERTIES = new Properties();
+    private static final String FILENAME = "pivotal.PROPERTIES";
     private Environment() {
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME);
-            properties.load(fileInputStream);
+            PROPERTIES.load(fileInputStream);
             fileInputStream.close();
         } catch (FileNotFoundException e) {
-            LOGGER.warn("The properties file couldn't be found", e.getCause());
+            LOGGER.warn("The PROPERTIES file couldn't be found", e.getCause());
         } catch (IOException e) {
             LOGGER.warn("A problem of type", e.getCause());
         }
@@ -38,23 +38,23 @@ public final class Environment {
     }
 
     public String getBaseURI() {
-        return properties.getProperty("baseURI");
+        return PROPERTIES.getProperty("baseURI");
     }
 
     public String getProxy() {
-        return properties.getProperty("proxy");
+        return PROPERTIES.getProperty("proxy");
     }
 
     public String getUser() {
-        return properties.getProperty("user");
+        return PROPERTIES.getProperty("user");
     }
 
     public String getPassword() {
-        return properties.getProperty("password");
+        return PROPERTIES.getProperty("password");
     }
 
     public String getToken() {
-        return properties.getProperty("token");
+        return PROPERTIES.getProperty("token");
     }
 
 }
