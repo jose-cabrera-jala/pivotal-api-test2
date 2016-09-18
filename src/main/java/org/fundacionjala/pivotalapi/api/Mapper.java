@@ -28,12 +28,15 @@ public final class Mapper {
         return from(response.asString()).get(parameter).toString();
     }
 
-    public static String mapEndpoint(final String endPoint) {
-        Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(endPoint);
+    public static String mapEndpoint(String endPoint) {
+        return mapBodyJson(endPoint).replaceAll(REGEX_BRACKETS, "");
+    }
+
+    public static String mapBodyJson(String body) {
+        Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(body);
         StringBuffer newEndPoint = new StringBuffer();
 
         while (matches.find()) {
-
             String[] parametersParts = matches.group().split(REGEX_DOT, 2);
             String key = parametersParts[0];
             String value = parametersParts[1];
@@ -41,7 +44,7 @@ public final class Mapper {
             matches.appendReplacement(newEndPoint, replaceParameter);
         }
         matches.appendTail(newEndPoint);
-        return newEndPoint.toString().replaceAll(REGEX_BRACKETS, "");
+        return newEndPoint.toString();
     }
 
     public static void addResponse(final String key, final Response response) {
