@@ -28,11 +28,11 @@ public final class Mapper {
         return from(response.asString()).get(parameter).toString();
     }
 
-    public static String mapEndpoint(String endPoint) {
+    public static String mapEndpoint(final String endPoint) {
         return mapBodyJson(endPoint).replaceAll(REGEX_BRACKETS, "");
     }
 
-    public static String mapBodyJson(String body) {
+    public static String mapBodyJson(final String body) {
         Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(body);
         StringBuffer newEndPoint = new StringBuffer();
 
