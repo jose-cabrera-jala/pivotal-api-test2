@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Epics Pivotal Tracker Testing
 
   Background: create a Project, and create an Epic
