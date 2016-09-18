@@ -16,7 +16,8 @@ public final class CommonMethods {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getName());
 
-    private CommonMethods() {} 
+    private CommonMethods() {
+    }
 
     public static void clearProjects() {
         List<Map<String, ?>> jsonAsArrayList = from(get(PROJECTS_ENDPOINT).asString()).get("");
