@@ -21,14 +21,14 @@ public final class RequestManager {
 
     }
 
-    public static Response get(String endPoint) {
+    public static Response get(final String endPoint) {
         LOGGER.info("GET endpoint is: " + endPoint);
         return given().spec(REQUEST_SPECIFICATION)
                 .when()
                 .get(endPoint);
     }
 
-    public static Response post(String endPoint, String body) {
+    public static Response post(final String endPoint, final String body) {
         LOGGER.info("POST endpoint is: " + endPoint);
         return given().spec(REQUEST_SPECIFICATION)
                 .header("Content-Type", "application/json")
@@ -37,7 +37,7 @@ public final class RequestManager {
                 .post(endPoint);
     }
 
-    public static Response post(String endPoint, Map<String, Object> body) {
+    public static Response post(final String endPoint, final Map<String, Object> body) {
         LOGGER.info("POST endpoint is: " + endPoint);
         return given().spec(REQUEST_SPECIFICATION)
                 .params(body)
@@ -45,7 +45,7 @@ public final class RequestManager {
                 .post(endPoint);
     }
 
-    public static Response put(String endPoint, String body) {
+    public static Response put(final String endPoint, final String body) {
         LOGGER.info("PUT endpoint is: " + endPoint);
         return given().spec(REQUEST_SPECIFICATION)
                 .header("Content-Type", "application/json")
@@ -54,7 +54,7 @@ public final class RequestManager {
                 .put(endPoint);
     }
 
-    public static Response put(String endPoint, Map<String, Object> body) {
+    public static Response put(final String endPoint, final Map<String, Object> body) {
         LOGGER.info("PUT endpoint is: " + endPoint);
         return given().spec(REQUEST_SPECIFICATION)
                 .params(body)
@@ -62,7 +62,7 @@ public final class RequestManager {
                 .put(endPoint);
     }
 
-    public static Response delete(String endPoint) {
+    public static Response delete(final String endPoint) {
         LOGGER.info("DELETE endpoint is: " + endPoint);
         return given().spec(REQUEST_SPECIFICATION)
                 .when()

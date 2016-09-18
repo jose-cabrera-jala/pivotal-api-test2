@@ -8,7 +8,7 @@ import org.fundacionjala.pivotalapi.util.Environment;
 /**
  * Created by AngelaValdez on 8/31/2016.
  */
-public class Connection {
+public final class Connection {
     private static final String TOKEN_HEADER = "X-TrackerToken";
     private static Connection instance;
     private RequestSpecification requestSpecification;
