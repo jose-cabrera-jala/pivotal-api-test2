@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Projects Pivotal Tracker Testing
 
   Background: create a Project

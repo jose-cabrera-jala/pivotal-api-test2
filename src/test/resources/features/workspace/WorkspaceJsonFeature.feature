@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Workspace Pivotal Tracker With Json
   Scenario: Verify to create, edit and delete an specific Workspace API by Id using json
     When I send a /my/workspaces POST with the json

@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Epics Pivotal Tracker Testing With Json
   Scenario: Verify to create, edit and delete an specific Epic API by Id using json
     When I send a /projects POST with the json

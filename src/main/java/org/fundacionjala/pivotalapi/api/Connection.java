@@ -1,19 +1,22 @@
 package org.fundacionjala.pivotalapi.api;
 
-import com.github.markusbernhardt.proxy.ProxySearch;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
+
 import org.fundacionjala.pivotalapi.util.Environment;
 
 /**
- * Created by AngelaValdez on 8/31/2016.
+ * Class that is used to make the connection.
  */
 public class Connection {
     private static final String TOKEN_HEADER = "X-TrackerToken";
     private static Connection instance;
     private RequestSpecification requestSpecification;
 
+    /**
+     * Constructor method to set a connection with Pivotal Tracker.
+     */
     private Connection(){
         Environment apiRetClient = Environment.getInstance();
         RestAssured.baseURI = apiRetClient.getBaseURI();
@@ -26,6 +29,11 @@ public class Connection {
         }
     }
 
+    /**
+     * Method applied to return only a Singleton instance.
+     *
+     * @return An instance
+     */
     public static Connection getInstance(){
         if(instance == null){
             instance = new Connection();
@@ -33,6 +41,11 @@ public class Connection {
         return instance;
     }
 
+    /**
+     * Method that returns the Request specification.
+     *
+     * @return The request specification.
+     */
     public  RequestSpecification getRequestSpecification(){
         return requestSpecification;
     }
