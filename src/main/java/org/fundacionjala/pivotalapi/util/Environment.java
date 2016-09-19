@@ -15,8 +15,10 @@ public final class Environment {
     private static final Logger LOGGER = Logger.getLogger(Environment.class.getSimpleName());
 
     private static Environment instance;
+
     private static final Properties PROPERTIES = new Properties();
     private static final String FILENAME = "pivotal.PROPERTIES";
+
     private Environment() {
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME);
@@ -43,14 +45,6 @@ public final class Environment {
 
     public String getProxy() {
         return PROPERTIES.getProperty("proxy");
-    }
-
-    public String getUser() {
-        return PROPERTIES.getProperty("user");
-    }
-
-    public String getPassword() {
-        return PROPERTIES.getProperty("password");
     }
 
     public String getToken() {
