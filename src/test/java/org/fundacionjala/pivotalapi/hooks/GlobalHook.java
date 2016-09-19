@@ -13,6 +13,11 @@ import static org.fundacionjala.pivotalapi.util.CommonMethods.quitProgram;
 import static org.fundacionjala.pivotalapi.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotalapi.util.Constants.STATUS_CODE_SUCCESSFULLY;
 
+/**
+ * Class that contains methods that are going to be used to run the tests.
+ *
+ * @author Jimmy Romero
+ */
 public class GlobalHook {
 
     private static final String LOG4J_PROPERTIES = "src/main/resources/log4j.properties";

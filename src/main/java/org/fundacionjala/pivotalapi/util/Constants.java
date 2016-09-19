@@ -1,5 +1,10 @@
 package org.fundacionjala.pivotalapi.util;
 
+/**
+ * Class that contains constant variables of all classes of the project.
+ *
+ * @author Jimmy Romero
+ */
 public final class Constants {
 
     public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
