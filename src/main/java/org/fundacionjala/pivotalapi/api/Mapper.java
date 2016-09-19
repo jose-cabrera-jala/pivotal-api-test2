@@ -1,16 +1,16 @@
 package org.fundacionjala.pivotalapi.api;
 
-import io.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.restassured.response.Response;
+
 import static io.restassured.path.json.JsonPath.from;
 
 /**
- * Created by AngelaValdez on 9/13/2016.
+ * Class that parses an pseudo URL into a valid URL
  */
 public final class Mapper {
     public static final Map<String, Response> RESPONSE_VALUES = new HashMap<String, Response>();
@@ -24,15 +24,36 @@ public final class Mapper {
     private Mapper() {
     }
 
-    public static String getField(final Response response, final String parameter) {
+
+    /**
+     * Method that returns the specif field with a response and a parameter.
+     *
+     * @param response The response to get the field.
+     * @param parameter The parameter
+     * @return The field with a response and a parameter.
+     */
+    public static String getField(Response response, String parameter) {
         return from(response.asString()).get(parameter).toString();
     }
 
-    public static String mapEndpoint(final String endPoint) {
-        return mapBodyJson(endPoint).replaceAll(REGEX_BRACKETS, "");
+    /**
+     *Method that replaces everything including the brackets.
+     *
+     * @param endPoint
+     * @return
+     */
+    public static String mapEndpoint(String endPoint) {
+       return mapBodyJson(endPoint).replaceAll(REGEX_BRACKETS, "");
     }
 
-    public static String mapBodyJson(final String body) {
+    /**
+     * Method that replaces everything that is between the brackets.
+     *
+     * @param body
+     * @return
+     */
+    public static String mapBodyJson (String body){
+
         Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(body);
         StringBuffer newEndPoint = new StringBuffer();
 
@@ -47,7 +68,15 @@ public final class Mapper {
         return newEndPoint.toString();
     }
 
-    public static void addResponse(final String key, final Response response) {
+
+    /**
+     * Method that adds a new key with the hash with all its response.
+     *
+     * @param key
+     * @param response
+     */
+    public static void addResponse(String key, Response response) {
+
         RESPONSE_VALUES.put(key, response);
     }
 }
