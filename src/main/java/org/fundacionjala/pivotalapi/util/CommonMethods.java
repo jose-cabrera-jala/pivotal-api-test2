@@ -21,7 +21,8 @@ public final class CommonMethods {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getName());
 
-    private CommonMethods() {}
+    private CommonMethods() {
+    }
 
     /**
      * Method to clear all existent Projects in Pivotal Tracker.
@@ -43,12 +44,14 @@ public final class CommonMethods {
         }
     }
 
+
     /**
      * Method to that is going to be used to quit the actual performing of the Project.
      *
      * @param message
      */
     public static void quitProgram(String message) {
+
         LOGGER.error(message);
     }
 }

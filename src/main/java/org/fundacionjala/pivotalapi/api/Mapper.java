@@ -24,6 +24,7 @@ public final class Mapper {
     private Mapper() {
     }
 
+
     /**
      * Method that returns the specif field with a response and a parameter.
      *
@@ -52,6 +53,7 @@ public final class Mapper {
      * @return
      */
     public static String mapBodyJson (String body){
+
         Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(body);
         StringBuffer newEndPoint = new StringBuffer();
 
@@ -66,6 +68,7 @@ public final class Mapper {
         return newEndPoint.toString();
     }
 
+
     /**
      * Method that adds a new key with the hash with all its response.
      *
@@ -73,6 +76,7 @@ public final class Mapper {
      * @param response
      */
     public static void addResponse(String key, Response response) {
+
         RESPONSE_VALUES.put(key, response);
     }
 }

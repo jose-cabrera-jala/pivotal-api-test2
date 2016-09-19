@@ -9,15 +9,17 @@ import org.fundacionjala.pivotalapi.util.Environment;
 /**
  * Class that is used to make the connection.
  */
-public class Connection {
+public final class Connection {
     private static final String TOKEN_HEADER = "X-TrackerToken";
     private static Connection instance;
     private RequestSpecification requestSpecification;
+
 
     /**
      * Constructor method to set a connection with Pivotal Tracker.
      */
     private Connection(){
+
         Environment apiRetClient = Environment.getInstance();
         RestAssured.baseURI = apiRetClient.getBaseURI();
         requestSpecification = new RequestSpecBuilder()
@@ -36,10 +38,12 @@ public class Connection {
      */
     public static Connection getInstance(){
         if(instance == null){
+
             instance = new Connection();
         }
         return instance;
     }
+
 
     /**
      * Method that returns the Request specification.
@@ -47,6 +51,7 @@ public class Connection {
      * @return The request specification.
      */
     public  RequestSpecification getRequestSpecification(){
+
         return requestSpecification;
     }
 }

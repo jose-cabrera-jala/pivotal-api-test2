@@ -13,5 +13,6 @@ public final class Constants {
     public static final String ID_ATTRIBUTE = "id";
     public static final int STATUS_CODE_SUCCESSFULLY = 200;
 
-    private Constants() {}
+    private Constants() {
+    }
 }
