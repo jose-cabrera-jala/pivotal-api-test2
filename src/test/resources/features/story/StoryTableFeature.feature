@@ -1,3 +1,4 @@
+@ClearAllEnvironment
 Feature: Stories Pivotal tracker Testing
 
   Background: create a project
